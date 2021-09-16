@@ -1,3 +1,6 @@
+import { userInterface } from "../user/userState";
+import { commentInterface } from "../comment/commentState";
+
 export interface PostState {
   posts: postInterface[] | undefined;
   loading: boolean;
@@ -9,6 +12,8 @@ export interface postInterface {
   id: number;
   title: string;
   body: string;
+  user?: userInterface;
+  comments?: commentInterface[];
 }
 
 export const initialPostState: PostState = {
