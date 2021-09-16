@@ -8,14 +8,6 @@ import { commentInterface } from "../comment/commentState";
 
 export const PostContext = createContext<PostState>(initialPostState);
 
-// interface postsWithRelationsInterface {
-//   userId: number;
-//   id: number;
-//   title: string;
-//   body: string;
-//   user: userInterface;
-// }
-
 export const PostProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialPostState);
 
@@ -28,7 +20,7 @@ export const PostProvider: React.FC = ({ children }) => {
       const { data: users } = resUsers;
       const { data: comments } = resComments;
 
-      const postsWithRelations = posts.map((post: postInterface) => {
+      const postsWithRelations : postInterface[] = posts.map((post: postInterface) : postInterface => {
         return {
           ...post,
           user: users.find((user: userInterface) => {

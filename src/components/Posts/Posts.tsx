@@ -1,12 +1,13 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
+import { useHistory } from "react-router";
 import { PostContext } from "../../context/post/PostProvider";
+import List from "../List/List";
 
 import styles from "./Posts.module.css";
 
 const Posts = () => {
-  // const [posts, setPosts] = useState<Posts[]>([]);
-  // console.log("test", fetchAllData(""));
   const { posts, loading, getPosts } = useContext(PostContext);
+
 
   useEffect(() => {
     getPosts();
@@ -17,15 +18,9 @@ const Posts = () => {
     <div>
       <h1>Postovi</h1>
       {loading ? "ucitava" : "fin"}
-      {posts &&
-        posts.map((post) => {
-          return (
-            <div className={styles.post_container} key={post.id}>
-              <div>{post.title}</div>
-              <div>{post.user?.name}</div>
-            </div>
-          );
-        })}
+      <div className="post_block">
+        {posts && <List data={posts} /> }
+      </div> 
     </div>
   );
 };

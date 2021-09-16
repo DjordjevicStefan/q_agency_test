@@ -1,11 +1,19 @@
+import ListItem from './ListItem/ListItem';
+import { postInterface } from '../../context/post/postState';
+
 interface ListProps {
-  data: object[];
+  data: postInterface[];
 }
 
-const List: React.FC<ListProps> = ({ data }) => {
+const List  = ({ data: items } :ListProps) => {
   return (
     <div className=''>
-      <h1>Dobrodošli</h1>
+      {items &&
+        items.map((item) => {
+          return (
+            <ListItem goTo={'/posts'} key={item.id} data={item}/>
+          );
+      })}
     </div>
   );
 };
