@@ -3,8 +3,9 @@ import { commentInterface } from "../comment/commentState";
 
 export interface PostState {
   posts: postInterface[] | undefined;
-  loading: boolean;
+  post: postInterface | undefined;
   getPosts: () => void;
+  getPostById: (postId: number) => void;
 }
 
 export interface postInterface {
@@ -18,6 +19,7 @@ export interface postInterface {
 
 export const initialPostState: PostState = {
   posts: [],
-  loading: true,
+  post: undefined,
   getPosts: () => {},
+  getPostById: () => {},
 };
