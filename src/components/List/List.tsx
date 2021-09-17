@@ -1,19 +1,19 @@
-import ListItem from './ListItem/ListItem';
-import { postInterface } from '../../context/post/postState';
+import ListItem from "./ListItem/ListItem";
+import { postInterface } from "../../context/post/postState";
 
-interface ListProps {
+interface PropsInterface {
   data: postInterface[];
+  message: string;
 }
 
-const List  = ({ data: items } :ListProps) => {
+const List = ({ data: items, message }: PropsInterface) => {
+  console.log(message, "List");
   return (
     <div className=''>
       {items &&
         items.map((item) => {
-          return (
-            <ListItem goTo={'/posts'} key={item.id} data={item}/>
-          );
-      })}
+          return <ListItem message={message} goTo={"/posts"} key={item.id} data={item} />;
+        })}
     </div>
   );
 };

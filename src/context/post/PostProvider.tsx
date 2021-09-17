@@ -11,7 +11,7 @@ export const PostContext = createContext<PostState>(initialPostState);
 export const PostProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialPostState);
 
-  // Action Generators
+  //// Action Generators
   const getPosts = async () => {
     //// don't call API if it is already loaded
     if (state.posts?.length !== 0) {
@@ -20,7 +20,7 @@ export const PostProvider: React.FC = ({ children }) => {
 
     try {
       const [resPosts, resUsers, resComments] = await fectAllData();
-      // const [resPosts, resUsers, resComments] = res;
+
       const { data: posts } = resPosts;
       const { data: users } = resUsers;
       const { data: comments } = resComments;
@@ -42,7 +42,10 @@ export const PostProvider: React.FC = ({ children }) => {
         payload: postsWithRelations,
       });
     } catch (error) {
-      console.log("error", error);
+      dispatch({
+        type: PostActionTypes.SET_ERROR,
+        payload: "error msg from API backend",
+      });
     }
   };
 
@@ -52,22 +55,81 @@ export const PostProvider: React.FC = ({ children }) => {
       return;
     }
 
-    try {
-      const { data: post } = await fetchPost(postId);
-      const { data: user } = await fetchUserByPostUserId(post.userId);
+    const post = state.posts?.find((post) => {
+      return post.id === postId;
+    });
 
-      const postWithUser: postInterface = { ...post, user };
-
+    if (post) {
       dispatch({
         type: PostActionTypes.GET_POST,
-        payload: postWithUser,
+        payload: { ...post },
       });
-    } catch (error) {
-      console.log("error", error);
+    } else {
+      try {
+        const { data: post } = await fetchPost(postId);
+        const { data: user } = await fetchUserByPostUserId(post.userId);
+
+        const postWithUser: postInterface = { ...post, user };
+
+        dispatch({
+          type: PostActionTypes.GET_POST,
+          payload: postWithUser,
+        });
+      } catch (error) {
+        dispatch({
+          type: PostActionTypes.SET_ERROR,
+          payload: "error msg from API backend",
+        });
+      }
     }
   };
 
-  const { posts, post } = state;
+  // const clearPost = () => {
+  //   dispatch({
+  //     type: PostActionTypes.CLEAR_POST,
+  //     payload: undefined,
+  //   });
+  // };
 
-  return <PostContext.Provider value={{ posts, post, getPosts, getPostById }}>{children}</PostContext.Provider>;
+  //// search function
+  const searchPostsByUserData = (searchTerm: string) => {
+    const { posts } = state;
+
+    if (posts) {
+      const searchedPosts = posts.filter((post: postInterface) => {
+        return post.user?.["name"].toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      dispatch({
+        type: PostActionTypes.SEARCH_POSTS,
+        payload: searchedPosts,
+      });
+    }
+  };
+
+  const searchBoxCleanup = () => {
+    dispatch({
+      type: PostActionTypes.SEARCHBOX_CLEANUP,
+      payload: [],
+    });
+  };
+
+  const { posts, post, searchPostsResult, errorMsg } = state;
+
+  return (
+    <PostContext.Provider
+      value={{
+        posts,
+        post,
+        searchPostsResult,
+        errorMsg,
+        getPosts,
+        getPostById,
+        searchPostsByUserData,
+        searchBoxCleanup,
+      }}
+    >
+      {children}
+    </PostContext.Provider>
+  );
 };

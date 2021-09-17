@@ -1,13 +1,31 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
-const Navbar = () => {
+interface PropsInterface {
+  message: string;
+}
+
+const Navbar = ({ message }: PropsInterface) => {
+  console.log(message + "Navbar");
   return (
-    <nav className=''>
-      <h1 className={styles.test}>Q Agency app</h1>
-      <div className='links'>
-        <Link to='/'>Home</Link>
-        <Link to='/posts'>Postovi</Link>
+    <nav className='navbar navbar-dark bg-primary'>
+      <div className='container-fluid'>
+        <Link to='/' className='navbar-brand'>
+          Q Agency
+        </Link>
+
+        <div className='row justify-content-between'>
+          <div className='col'>
+            <Link className='btn btn-dark' to='/'>
+              Home
+            </Link>
+          </div>
+          <div className='col'>
+            <Link className='btn btn-success' to='/posts'>
+              Postovi
+            </Link>
+          </div>
+        </div>
       </div>
     </nav>
   );

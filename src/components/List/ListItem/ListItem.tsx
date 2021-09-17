@@ -1,12 +1,14 @@
 import { postInterface } from "../../../context/post/postState";
 import { useHistory } from "react-router-dom";
 
-interface ListProps {
+interface PropsInterface {
   data: postInterface;
+  message: string;
   goTo?: undefined | string;
 }
 
-const ListItem = ({ data: item, goTo = undefined }: ListProps) => {
+const ListItem = ({ data: item, goTo = undefined, message }: PropsInterface) => {
+  console.log(message, "ListItem");
   const history = useHistory();
 
   const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, goTo: undefined | string): void => {

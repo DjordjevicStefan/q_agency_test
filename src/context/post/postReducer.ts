@@ -13,6 +13,26 @@ export const postReducer = (state: PostState, action: PostAction) => {
         ...state,
         post: action.payload,
       };
+    case PostActionTypes.SEARCH_POSTS:
+      return {
+        ...state,
+        searchPostsResult: action.payload,
+      };
+    case PostActionTypes.SET_ERROR:
+      return {
+        ...state,
+        errorMsg: action.payload,
+      };
+    case PostActionTypes.SEARCHBOX_CLEANUP:
+      return {
+        ...state,
+        searchPostsResult: action.payload,
+      };
+    // case PostActionTypes.CLEAR_POST:
+    //   return {
+    //     ...state,
+    //     post: action.payload,
+    //   };
     default:
       return state;
   }
