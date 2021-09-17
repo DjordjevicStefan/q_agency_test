@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css";
 
 interface PropsInterface {
   message: string;
@@ -8,7 +7,7 @@ interface PropsInterface {
 const Navbar = ({ message }: PropsInterface) => {
   console.log(message + "Navbar");
   return (
-    <nav className='navbar navbar-dark bg-primary'>
+    <nav className='navbar navbar-dark bg-primary mb-3'>
       <div className='container-fluid'>
         <Link to='/' className='navbar-brand'>
           Q Agency
@@ -22,7 +21,7 @@ const Navbar = ({ message }: PropsInterface) => {
           </div>
           <div className='col'>
             <Link className='btn btn-success' to='/posts'>
-              Postovi
+              Posts
             </Link>
           </div>
         </div>

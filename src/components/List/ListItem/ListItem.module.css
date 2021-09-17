@@ -1,0 +1,9 @@
+.card_element {
+  max-width: 40%;
+  cursor: pointer;
+}
+
+.card_element:hover {
+  box-shadow: 4px 6px 10px rgba(13, 17, 243, 0.25);
+  transition: all 0.4s;
+}

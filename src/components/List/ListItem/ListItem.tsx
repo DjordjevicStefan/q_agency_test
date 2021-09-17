@@ -1,5 +1,6 @@
 import { postInterface } from "../../../context/post/postState";
 import { useHistory } from "react-router-dom";
+import style from "./ListItem.module.css";
 
 interface PropsInterface {
   data: postInterface;
@@ -11,7 +12,7 @@ const ListItem = ({ data: item, goTo = undefined, message }: PropsInterface) => 
   console.log(message, "ListItem");
   const history = useHistory();
 
-  const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, goTo: undefined | string): void => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, goTo: undefined | string): void => {
     if (!goTo) {
       return;
     }
@@ -22,11 +23,20 @@ const ListItem = ({ data: item, goTo = undefined, message }: PropsInterface) => 
   };
 
   return (
-    <li onClick={(e) => handleClick(e, goTo)} data-id={item.id} className=''>
-      <div>{item.title}</div>
-      <div>{item.body}</div>
-      <div>{item.user?.name}</div>
-    </li>
+    <div
+      onClick={(e) => handleClick(e, goTo)}
+      data-id={item.id}
+      className={"card border-primary my-4 " + style.card_element}
+    >
+      <div className='card-header bg-transparent border-primary'>Post</div>
+      <div className='card-body text-dark'>
+        <h5 className='card-title'>{item.title}</h5>
+        <p className='card-text'>{item.body}</p>
+      </div>
+      <div className='card-footer bg-transparent border-primary'>
+        Writen by: <span className='fst-italic'>{item.user?.name}</span>
+      </div>
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import { PostContext } from "../../context/post/PostProvider";
 import { postInterface } from "../../context/post/postState";
 import List from "../List/List";
 import SearchBox from "../SearchBox/SearchBox";
+import Spinner from "../Spinner/Spinner";
 
 // import styles from "./Posts.module.css";
 
@@ -28,11 +29,12 @@ const Posts = ({ message }: PropsInterface) => {
   };
 
   return (
-    <div>
-      <h1>Postovi</h1>
+    <>
+      <h1>Posts</h1>
       <SearchBox />
+      {!posts.length && <Spinner />}
       {rednerList(searchPostsResult)}
-    </div>
+    </>
   );
 };
 

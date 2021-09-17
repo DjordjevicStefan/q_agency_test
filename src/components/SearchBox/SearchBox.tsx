@@ -21,8 +21,19 @@ const SearchBox = () => {
 
   return (
     <div>
-      <input value={searchTerm} onChange={(e) => handleSerch(e)} />
-      <div>Search box lagani</div>
+      <div className='input-group mb-3'>
+        <span className='input-group-text' id='basic-addon3'>
+          Search posts by post owner name
+        </span>
+        <input
+          value={searchTerm}
+          onChange={(e) => handleSerch(e)}
+          type='text'
+          className='form-control'
+          id='basic-url'
+          aria-describedby='basic-addon3'
+        />
+      </div>
     </div>
   );
 };

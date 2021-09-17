@@ -6,7 +6,7 @@ const Home = ({ message }: PropsInterface) => {
   console.log(message + "Home");
   return (
     <div>
-      <h1>Dobrodošli</h1>
+      <h1>Welcome</h1>
     </div>
   );
 };

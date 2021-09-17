@@ -9,7 +9,7 @@ interface PropsInterface {
 const List = ({ data: items, message }: PropsInterface) => {
   console.log(message, "List");
   return (
-    <div className=''>
+    <div className='bg-success text-dark bg-opacity-25  row justify-content-around'>
       {items &&
         items.map((item) => {
           return <ListItem message={message} goTo={"/posts"} key={item.id} data={item} />;
