@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from "react";
 import { PostContext } from "../../context/post/PostProvider";
 
 const SearchBox = () => {
-  // const { posts, getPosts } = useContext(PostContext);
   const [searchTerm, setSearchTerm] = useState("");
   const { searchPostsByUserData, searchBoxCleanup } = useContext(PostContext);
 

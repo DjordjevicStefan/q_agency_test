@@ -4,6 +4,6 @@
 }
 
 .card_element:hover {
-  box-shadow: 4px 6px 10px rgba(13, 17, 243, 0.25);
+  box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.45);
   transition: all 0.4s;
 }

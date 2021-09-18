@@ -5,8 +5,6 @@ import List from "../List/List";
 import SearchBox from "../SearchBox/SearchBox";
 import Spinner from "../Spinner/Spinner";
 
-// import styles from "./Posts.module.css";
-
 interface PropsInterface {
   message: string;
 }
@@ -32,7 +30,7 @@ const Posts = ({ message }: PropsInterface) => {
     <>
       <h1>Posts</h1>
       <SearchBox />
-      {!posts.length && <Spinner />}
+      {!posts.length && <Spinner message={message} />}
       {rednerList(searchPostsResult)}
     </>
   );

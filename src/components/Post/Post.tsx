@@ -19,7 +19,7 @@ const Post = ({ message }: PropsInterface) => {
 
   return (
     <>
-      {!post && <Spinner />}
+      {!post && <Spinner message={message} />}
       <div className='card border-success mb-3'>
         {post && (
           <>

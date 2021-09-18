@@ -26,14 +26,14 @@ const ListItem = ({ data: item, goTo = undefined, message }: PropsInterface) => 
     <div
       onClick={(e) => handleClick(e, goTo)}
       data-id={item.id}
-      className={"card border-primary my-4 " + style.card_element}
+      className={"card border-dark my-4 " + style.card_element}
     >
-      <div className='card-header bg-transparent border-primary'>Post</div>
+      <div className='card-header bg-transparent border-dark'>Post</div>
       <div className='card-body text-dark'>
         <h5 className='card-title'>{item.title}</h5>
         <p className='card-text'>{item.body}</p>
       </div>
-      <div className='card-footer bg-transparent border-primary'>
+      <div className='card-footer bg-transparent border-success'>
         Writen by: <span className='fst-italic'>{item.user?.name}</span>
       </div>
     </div>

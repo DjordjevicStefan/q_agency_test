@@ -84,13 +84,6 @@ export const PostProvider: React.FC = ({ children }) => {
     }
   };
 
-  // const clearPost = () => {
-  //   dispatch({
-  //     type: PostActionTypes.CLEAR_POST,
-  //     payload: undefined,
-  //   });
-  // };
-
   //// search function
   const searchPostsByUserData = (searchTerm: string) => {
     const { posts } = state;

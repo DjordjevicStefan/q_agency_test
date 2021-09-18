@@ -7,7 +7,7 @@ interface PropsInterface {
 const Navbar = ({ message }: PropsInterface) => {
   console.log(message + "Navbar");
   return (
-    <nav className='navbar navbar-dark bg-primary mb-3'>
+    <nav className='navbar navbar-dark bg-dark bg-opacity-75 mb-3'>
       <div className='container-fluid'>
         <Link to='/' className='navbar-brand'>
           Q Agency
